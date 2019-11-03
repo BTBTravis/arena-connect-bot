@@ -5,15 +5,8 @@ defmodule ArenaConnectBotWeb.TelegramMessageInControllerTest do
     import Tesla.Mock
 
     setup do
-      token = System.get_env("TELEGRAM_TOKEN")
-      telegram_send_msg_url = "https://api.telegram.org/bot" <> token <> "/sendMessage"
-      mock fn
-        %{method: :post, url: telegram_send_msg_url } ->
-          %Tesla.Env{status: 200, body: "hello"}
-        #%{method: :post, url: "http://example.com/world"} ->
-          #json(%{"my" => "data"})
-      end
-
+      mock fn res ->
+        %Tesla.Env{status: 200, body: "hello"} end
       :ok
     end
 

@@ -1,19 +1,12 @@
 defmodule ArenaConnectBot.Telegram.Api do
+  use Tesla
+
+  adapter Tesla.Adapter.Hackney, recv_timeout: 30_000
+
   def send_msg(token, chat_id, msg) do
-    # pass `client` argument to `Tesla.get` function
     url = "https://api.telegram.org/bot" <> token <> "/sendMessage"
-    #Tesla.post(client, url, %{"text" => msg, "chat_id" => chat_id})
-    #Tesla.post(url, %{"text" => msg, "chat_id" => chat_id}, headers: [{"content-type", "application/json"}])
-    Tesla.post(url, "data", headers: [{"content-type", "application/json"}])
+    json_data = Jason.encode!(%{"text" => msg, "chat_id" => chat_id})
+    p = Tesla.post(url, json_data, headers: [{"content-type", "application/json"}])
+    IO.inspect p
   end
-
-  # build dynamic client based on runtime arguments
-  #def client() do
-    #middleware = [
-      #{Tesla.Middleware.BaseUrl, "https://api.telegram.org"},
-      #Tesla.Middleware.JSON
-    #]
-
-    #Tesla.client(middleware)
-  #end
 end

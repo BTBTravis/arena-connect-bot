@@ -39,7 +39,7 @@ defmodule ArenaConnectBot.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:poison, "~> 3.1"},
       {:tesla, "~> 1.2.0"},
-      {:hackney, "~> 1.14.0"},
+      {:hackney, "~> 1.15.2"},
     ]
   end
 end

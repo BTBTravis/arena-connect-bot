@@ -12,7 +12,9 @@ defmodule ArenaConnectBotWeb.TelegramMessageInController do
   def index(conn, params) do
     #IO.inspect(params)
     case ArenaConnectBot.Bot.handle_incoming_msg(params) do
-      {:error, msg} -> send400(conn, msg)
+      {:error, err_msg} ->
+	IO.inspect err_msg
+	send400(conn, "error")
       _ -> json(conn, %{handled: true})
     end
   end

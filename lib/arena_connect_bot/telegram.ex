@@ -3,7 +3,7 @@ defmodule ArenaConnectBot.Telegram do
     #client = ArenaConnectBot.Telegram.Api.client()
     case System.get_env("TELEGRAM_TOKEN") do
       nil -> {:error, "missing TELEGRAM_TOKEN env var"}
-      token -> ArenaConnectBot.Telegram.Api.send_msg("lalal", chat_id, msg)
+      token -> ArenaConnectBot.Telegram.Api.send_msg(token, chat_id, msg)
     end
   end
 end
