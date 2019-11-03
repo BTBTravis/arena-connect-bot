@@ -1,5 +1,21 @@
 defmodule ArenaConnectBotWeb.TelegramMessageInControllerTest do
+    #use ExUnit.Case
     use ArenaConnectBotWeb.ConnCase
+
+    import Tesla.Mock
+
+    setup do
+      token = System.get_env("TELEGRAM_TOKEN")
+      telegram_send_msg_url = "https://api.telegram.org/bot" <> token <> "/sendMessage"
+      mock fn
+        %{method: :post, url: telegram_send_msg_url } ->
+          %Tesla.Env{status: 200, body: "hello"}
+        #%{method: :post, url: "http://example.com/world"} ->
+          #json(%{"my" => "data"})
+      end
+
+      :ok
+    end
 
     test "/api/message only accepts valid messages", %{conn: conn} do
         msg = %{
@@ -35,7 +51,9 @@ defmodule ArenaConnectBotWeb.TelegramMessageInControllerTest do
       }
       conn = post(conn, "/api/message", msg)
       #assert json_response(conn, 400)
-      assert json_response(conn, 200) == %{"handled" => true, "chat_id" => 953058570}
+      assert json_response(conn, 200) == %{"handled" => true}
     end
 end
+
+
 

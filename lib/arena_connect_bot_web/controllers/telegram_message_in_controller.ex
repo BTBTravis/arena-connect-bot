@@ -8,16 +8,12 @@ defmodule ArenaConnectBotWeb.TelegramMessageInController do
     |> json(%{reason: msg})
   end
 
-  def get_chat_id(post_data) do
-    get_in(post_data, ["message", "chat", "id"])
-  end
-
   # method to handle all incoming telegram messages
   def index(conn, params) do
     #IO.inspect(params)
-    case get_chat_id(params) do
-      nil -> send400(conn, "no message found")
-      chat_id -> json(conn, %{handled: true, chat_id: chat_id})
+    case ArenaConnectBot.Bot.handle_incoming_msg(params) do
+      {:error, msg} -> send400(conn, msg)
+      _ -> json(conn, %{handled: true})
     end
   end
 end

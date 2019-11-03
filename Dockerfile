@@ -1,4 +1,5 @@
 FROM elixir:latest
+# inspiration from https://pspdfkit.com/blog/2018/how-to-run-your-phoenix-application-with-docker/
 
 # Create app directory and copy the Elixir projects into it
 RUN mkdir /app
