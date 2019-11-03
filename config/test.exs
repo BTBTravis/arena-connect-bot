@@ -8,3 +8,6 @@ config :arena_connect_bot, ArenaConnectBotWeb.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+
+config :tesla, adapter: Tesla.Mock
+

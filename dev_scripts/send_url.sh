@@ -8,27 +8,18 @@ curl -X POST -H 'Content-type: application/json' --data \
          "from": {
              "id": 123456789,
              "is_bot": false,
-             "first_name": "Lorenz",
-             "last_name": "Klopfenstein",
-             "username": "LorenzCK",
+             "first_name": "Travis",
+             "last_name": "Shears",
              "language_code": "en-US"
          },
          "chat": {
-             "id": 123456789,
-             "first_name": "Lorenz",
-             "last_name": "Klopfenstein",
-             "username": "LorenzCK",
+             "id": 953058570,
+             "first_name": "Travis",
+             "last_name": "Shears",
              "type": "private"
          },
          "date": 1506207666,
-         "text": "/start",
-         "entities": [
-             {
-                 "offset": 0,
-                 "length": 6,
-                 "type": "bot_command"
-             }
-         ]
+         "text": "https://hexdocs.pm/phoenix/testing.html#content"
      }
 }' \
 http://localhost:4000/api/message

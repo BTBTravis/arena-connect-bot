@@ -34,3 +34,4 @@ arena_connect_bot-*.tar
 # secrets files as long as you replace their contents by environment
 # variables.
 /config/*.secret.exs
+k8s/config_map.yml
