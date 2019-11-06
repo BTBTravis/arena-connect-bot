@@ -1,18 +1,18 @@
 # ArenaConnectBot
 
-To start your Phoenix server:
+A chatbot backend that posts things you send it to [Are.na](https://are.na).
 
-  * Install dependencies with `mix deps.get`
-  * Start Phoenix endpoint with `mix phx.server`
+## Dev
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+### Local setup
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+1. Install dependencies with `mix deps.get`
+1. Start local phoenix server with `mix phx.server`
 
-## Learn more
+The api will then be ready to curl at `localhost:4000`
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+### Deploying to production
+
+1. deploy the service to k8s `kubectl apply svc -f ./k8s/service.yml`
+1. deploy the deployment to k8s `kubectl apply deployment -f ./k8s/deployment.yml`
+

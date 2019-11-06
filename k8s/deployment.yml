@@ -22,10 +22,10 @@ items:
           app: arena-connect-api
       spec:
         containers:
-        - image: registry.gitlab.com/btbtravis/arena-connect-bot:0.0.1-alpha8
-          envFrom:
-          - configMapRef:
-              name: arena-connect-config-map
+        - image: registry.gitlab.com/btbtravis/arena-connect-bot:0.0.1-alpha10
+          env:
+          - name: MIX_ENV
+            value: "prod"
           imagePullPolicy: IfNotPresent
           name: phonix-api
           ports:
