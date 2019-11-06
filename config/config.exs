@@ -25,7 +25,8 @@ config :phoenix, :json_library, Jason
 config :tesla, :adapter, Tesla.Adapter.Hackney
 
 config :arena_connect_bot, ArenaConnectBot.Arena,
-  token: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  token: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  incoming_channel: "incoming-xxxxxxxxxxx"
 
 config :arena_connect_bot, ArenaConnectBot.Telegram.Api,
   token: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
