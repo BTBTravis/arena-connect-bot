@@ -22,7 +22,7 @@ items:
           app: arena-connect-api
       spec:
         containers:
-        - image: registry.gitlab.com/btbtravis/arena-connect-bot:0.0.1-alpha10
+        - image: registry.gitlab.com/btbtravis/arena-connect-bot:0.0.1
           env:
           - name: MIX_ENV
             value: "prod"
