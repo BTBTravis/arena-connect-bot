@@ -24,6 +24,18 @@ config :phoenix, :json_library, Jason
 
 config :tesla, :adapter, Tesla.Adapter.Hackney
 
+config :arena_connect_bot, ArenaConnectBot.Arena,
+  token: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+config :arena_connect_bot, ArenaConnectBot.Telegram.Api,
+  token: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+config :arena_connect_bot, ArenaConnectBot.Arena.Api,
+  http_client: Tesla
+
+config :arena_connect_bot, ArenaConnectBot.Telegram.Api,
+  http_client: Tesla
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"

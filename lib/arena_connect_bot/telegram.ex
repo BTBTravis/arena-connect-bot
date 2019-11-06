@@ -1,16 +1,13 @@
 defmodule ArenaConnectBot.Telegram do
+  alias ArenaConnectBot.Telegram.Api, as: Api
+
+  def get_token() do
+    Application.get_env(:arena_connect_bot, ArenaConnectBot.Telegram.Api)[:token]
+  end
+
   def send_message_to_chat(chat_id, msg) do
-    #client = ArenaConnectBot.Telegram.Api.client()
-    case System.get_env("TELEGRAM_TOKEN") do
-      nil -> {:error, "missing TELEGRAM_TOKEN env var"}
-      token -> ArenaConnectBot.Telegram.Api.send_msg(token, chat_id, msg)
-    end
+    Api.client(get_token())
+    |> Api.send_msg(chat_id, msg)
   end
 end
-
-#curl -X POST -H 'Content-type: application/json' \
-#--data '{"text":"hello good sir", "chat_id": 953058570 }' \
-#https://api.telegram.org/bot962619911:AAEswPv6hz3D28scl2yZSx_5vwRF4M7rDFg/sendMessage
-
-
 

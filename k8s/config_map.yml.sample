@@ -1,7 +1,0 @@
-apiVersion: v1
-data:
-  TELEGRAM_TOKEN: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-kind: ConfigMap
-metadata:
-  name: arena-connect-config-map
-  namespace: arena-connect

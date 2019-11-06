@@ -11,3 +11,9 @@ config :logger, level: :warn
 
 config :tesla, adapter: Tesla.Mock
 
+config :arena_connect_bot, ArenaConnectBot.Arena.Api,
+  http_client: ArenaConnectBot.Arena.HttpClient
+
+config :arena_connect_bot, ArenaConnectBot.Telegram.Api,
+  http_client: ArenaConnectBot.Telegram.HttpClient
+
