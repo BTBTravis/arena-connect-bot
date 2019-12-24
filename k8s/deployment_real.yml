@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: arena-connect-api
+  name: arena-connect-deployment
+spec:
+  replicas: 1
+  revisionHistoryLimit: 5
+  selector:
+    matchLabels:
+      app: arena-connect-api
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: arena-connect-api
+    spec:
+      containers:
+      - env:
+        - name: MIX_ENV
+          value: prod
+        image: registry.gitlab.com/btbtravis/arena-connect-bot:0.0.1
+        imagePullPolicy: IfNotPresent
+        name: phonix-api
+        ports:
+        - containerPort: 4000
+          protocol: TCP
+      imagePullSecrets:
+      - name: arena-connect-gitlab
+      restartPolicy: Always
