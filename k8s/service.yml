@@ -4,14 +4,12 @@ metadata:
   labels:
     app: arena-connect-api
   name: arena-connect-service
-  namespace: arena-connect
+  namespace: default
 spec:
   ports:
   - name: arena-connect-http
-    port: 4000
+    port: 80
     protocol: TCP
     targetPort: 4000
   selector:
     app: arena-connect-api
-  sessionAffinity: None
-  type: NodePort
