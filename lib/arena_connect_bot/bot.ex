@@ -34,28 +34,47 @@ defmodule ArenaConnectBot.Bot do
     end
   end
 
-  defp save_link(raw_post_data) do
-    with {:ok, chat_id} <- get_chat_id(raw_post_data),
-         {:ok, txt} <- get_msg_text(raw_post_data),
-         {:ok, user_id} <- get_user_id(raw_post_data)
-    do
-      case get_url_from_txt(txt) do
-        {:ok, url} ->
-          with {:ok, _} <- Arena.save_block_to_incoming(url),
-               {:ok, _} <- Telegram.send_message_to_chat(chat_id, "saved link to Are.na")
-          do
-            {:ok, "url saved to Aren.na"}
-          end
-        err -> err
-      end
+  defp save_link(msg) do
+    case get_url_from_txt(msg.txt) do
+      {:ok, url} ->
+        with {:ok, _} <- Arena.save_block_to_incoming(url),
+             {:ok, _} <- Telegram.send_message_to_chat(msg.chat_id, "saved link to Are.na")
+        do
+          {:ok, "url saved to Aren.na"}
+        end
+      err -> err
     end
   end
 
-  def handle_incoming_msg(data) do
-    with {:ok, chat_id} <- get_chat_id(data),
-         {:warning, warning_txt} <- save_link(data)
+  defp extact_data(raw_data) do
+    with {:ok, user_id} <- get_user_id(raw_data),
+	 {:ok, txt} <- get_msg_text(raw_data),
+	 {:ok, _} <- validate_is_admin(user_id)
     do
-      Telegram.send_message_to_chat(chat_id, "problem saving link: " <> warning_txt)
+      {:ok, %{user_id: user_id, txt: txt}}
+    end
+  end
+
+  defp parse_msg(raw_data, chat_id) do
+    case extact_data(raw_data) do
+      {:ok, msg} -> save_link(Map.put(msg, :chat_id, chat_id))
+      {:warning, warning_msg} -> Telegram.send_message_to_chat(chat_id, warning_msg)
+      _ -> raw_data
+    end
+  end
+
+  def handle_incoming_msg(raw_data) do
+    case get_chat_id(raw_data) do
+      {:ok, chat_id} -> parse_msg(raw_data, chat_id)
+      x -> IO.inspect x
+    end
+  end
+
+  defp validate_is_admin(id) do
+    if Telegram.get_admin_user_id() == "#{id}" do
+      {:ok, id}
+    else
+      {:warning, "not admin"}
     end
   end
 end
