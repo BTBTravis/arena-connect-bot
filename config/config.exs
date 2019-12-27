@@ -29,7 +29,8 @@ config :arena_connect_bot, ArenaConnectBot.Arena,
   incoming_channel: "incoming-xxxxxxxxxxx"
 
 config :arena_connect_bot, ArenaConnectBot.Telegram.Api,
-  token: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  token: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  admin_user_id: "123456789"
 
 config :arena_connect_bot, ArenaConnectBot.Arena.Api,
   http_client: Tesla
